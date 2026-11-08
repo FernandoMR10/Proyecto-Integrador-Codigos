@@ -33,7 +33,7 @@ def main() -> None:
     # Codificación binaria (0 = FALSE POSITIVE, 1 = CONFIRMED)
     df["target"] = df[target_col].map({"FALSE POSITIVE": 0, "CONFIRMED": 1})
 
-    # 2. Selección de Características (13 variables físicas astronómicas)
+    # 2. Selección de Características (13 variables físicas astronómicas puros)
     features = [
         "koi_period",     # Período orbital
         "koi_duration",   # Duración del tránsito
@@ -122,29 +122,59 @@ def main() -> None:
     print(results_df.to_string(index=False))
     print("\n")
 
-    # 7. Visualización de Importancia de Características (Random Forest)
-    print("Generando Gráfica de Importancia de características...")
-    rf = models["Random Forest"]
-    rf.fit(X_train_res, y_train_res)
-    importances = rf.feature_importances_
-    indices = np.argsort(importances)[::-1]
+    # 7. Visualización Comparativa de Importancia (Top 3 Modelos Ganadores)
+    print("Generando Gráfica Comparativa del Top 3 (XGBoost, CatBoost, HistGradientBoosting)...")
+    
+    # Entrenar HistGradientBoosting y obtener la importancia por permutación (requerido para scikit-learn)
+    from sklearn.inspection import permutation_importance
+    
+    xgb = models["XGBoost"]
+    xgb.fit(X_train_res, y_train_res)
+    xgb_imp = xgb.feature_importances_
 
-    plt.figure(figsize=(10, 6))
-    sns.barplot(
-        x=importances[indices],
-        y=np.array(features_present)[indices],
-        palette="viridis",
+    cat = models["CatBoost"]
+    cat.fit(X_train_res, y_train_res)
+    cat_imp = cat.feature_importances_ / 100.0  # Normalizar porcentaje a escala 0-1
+
+    hgb = models["Hist Gradient Boosting"]
+    hgb.fit(X_train_res, y_train_res)
+    hgb_perm = permutation_importance(hgb, X_train_res, y_train_res, n_repeats=10, random_state=42)
+    hgb_imp = hgb_perm.importances_mean / hgb_perm.importances_mean.sum()
+
+    top3_data = {
+        "XGBoost (1.er lugar)": xgb_imp,
+        "CatBoost (2.º lugar)": cat_imp,
+        "Hist Gradient Boosting (3.er lugar)": hgb_imp,
+    }
+
+    fig, axes = plt.subplots(1, 3, figsize=(18, 6), sharey=True)
+
+    for ax, (m_name, importances) in zip(axes, top3_data.items()):
+        indices = np.argsort(importances)[::-1]
+        
+        sns.barplot(
+            ax=ax,
+            x=importances[indices],
+            y=np.array(features_present)[indices],
+            hue=np.array(features_present)[indices],
+            legend=False,
+            palette="viridis",
+        )
+        ax.set_title(f"{m_name}", fontsize=11, fontweight="bold")
+        ax.set_xlabel("Importancia Relativa", fontsize=10)
+        if ax == axes[0]:
+            ax.set_ylabel("Característica Astrofísica", fontsize=10)
+
+    plt.suptitle(
+        "Figura 1. Comparativa de Importancia de Características Físicas (Top 3 Modelos)",
+        fontsize=14,
+        y=1.02,
     )
-    plt.title(
-        "Figura 1. Importancia relativa de las características físicas (Random Forest)"
-    )
-    plt.xlabel("Importancia Relativa (Gini Impurity)")
-    plt.ylabel("Característica Astrofísica")
     plt.tight_layout()
 
     # Guardar la gráfica para el reporte escrito
-    plt.savefig("figura1_importancia.png", dpi=300)
-    print("Gráfica guardada como 'figura1_importancia.png'.")
+    plt.savefig("figura1_importancia.png", dpi=300, bbox_inches="tight")
+    print("Gráfica comparativa del Top 3 guardada como 'figura1_importancia.png'.")
     plt.show()
 
 
