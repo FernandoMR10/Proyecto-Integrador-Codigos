@@ -9,13 +9,13 @@ Este repositorio contiene el código fuente, la configuración del entorno y los
 
 ---
 
-## 📋 Descripción del Proyecto
+## Descripción del Proyecto
 
 El objetivo de este proyecto es evaluar y comparar el desempeño predictivo de 7 clasificadores de Aprendizaje Automático supervisado sobre la tabla acumulativa del **NASA Exoplanet Archive (Kepler Data Release 25 - DR25)**. 
 
 Para evitar el sesgo conocido como *data leakage* (fuga de información), se han excluido rigurosamente todas las banderas de diagnóstico con intervención humana directa (`koi_fpflag_*`, `koi_score`, `kepler_name`), evaluando a los modelos basándose exclusivamente en **13 parámetros físicos, orbitales y astronómicos puros**.
 
-### 🤖 Modelos Evaluados (7 Algoritmos)
+### Modelos Evaluados (7 Algoritmos)
 1. **Gaussian Naive Bayes**
 2. **Árbol de Decisión**
 3. **Random Forest**
@@ -26,11 +26,11 @@ Para evitar el sesgo conocido como *data leakage* (fuga de información), se han
 
 ---
 
-## 🛠️ Requisitos Previos e Instalación
+## Requisitos Previos e Instalación
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/TuUsuario/Proyecto-Integrador-Codigos.git
+git clone https://github.com/FernandoMR10/Proyecto-Integrador-Codigos.git
 cd Proyecto-Integrador-Codigos
 ```
 
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ---
 
-## 📁 Estructura del Repositorio
+## Estructura del Repositorio
 
 ```text
 Proyecto-Integrador-Codigos/
@@ -70,7 +70,7 @@ Proyecto-Integrador-Codigos/
 
 ---
 
-## 🚀 Ejecución del Código
+## Ejecución del Código
 
 Asegúrate de tener el archivo de datos de Kepler (`cumulative_2026.10.19_20.00.40.csv`) en la raíz del proyecto y el entorno virtual activo. Luego ejecuta:
 
@@ -87,7 +87,7 @@ python evaluacion_modelos_exoplanetas.py
 
 ---
 
-## 🔬 Resultados Obtenidos (Etapa 3)
+## Resultados Obtenidos (Etapa 3)
 
 | Condición o Modelo | $n$ | Métrica (F1 / ROC-AUC) | Resultado | IC o Incertidumbre |
 | :--- | :---: | :---: | :---: | :---: |
@@ -101,6 +101,6 @@ python evaluacion_modelos_exoplanetas.py
 
 ---
 
-## 📜 Licencia y Fuente de Datos
+## Licencia y Fuente de Datos
 * **Fuente de Datos:** [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/) (Kepler Cumulative KOI Table - DR25). Datos de acceso público y libre reutilización.
 * **Licencia:** Este proyecto se distribuye bajo la licencia MIT.
