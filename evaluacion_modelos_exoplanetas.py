@@ -35,19 +35,19 @@ def main() -> None:
 
     # 2. Selección de Características (13 variables físicas astronómicas)
     features = [
-        "koi_period",
-        "koi_duration",
-        "koi_depth",
-        "koi_prad",
-        "koi_ror",
-        "koi_steff",
-        "koi_slogg",
-        "koi_smet",
-        "koi_srad",
-        "koi_smass",
-        "koi_model_snr",
-        "koi_model_dof",
-        "koi_model_chisq",
+        "koi_period",     # Período orbital
+        "koi_duration",   # Duración del tránsito
+        "koi_depth",      # Profundidad del tránsito
+        "koi_prad",       # Radio planetario
+        "koi_teq",        # Temperatura de equilibrio planetario
+        "koi_insol",      # Flujo de insolación
+        "koi_steff",      # Temperatura efectiva de la estrella
+        "koi_slogg",      # Gravedad superficial de la estrella
+        "koi_srad",       # Radio de la estrella
+        "koi_model_snr",  # Relación señal-ruido del modelo
+        "ra",             # Ascensión recta
+        "dec",            # Declinación
+        "koi_kepmag",     # Magnitud estelar en banda Kepler
     ]
 
     features_present = [f for f in features if f in df.columns]

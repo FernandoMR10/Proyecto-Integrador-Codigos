@@ -91,13 +91,13 @@ python evaluacion_modelos_exoplanetas.py
 
 | Condición o Modelo | $n$ | Métrica (F1 / ROC-AUC) | Resultado | IC o Incertidumbre |
 | :--- | :---: | :---: | :---: | :---: |
-| Gaussian Naive Bayes | 7,742 | F1-Score / ROC-AUC | 0.797 / 0.835 | $\pm$ 0.009 / $\pm$ 0.012 |
-| Árbol de Decisión | 7,742 | F1-Score / ROC-AUC | 0.895 / 0.894 | $\pm$ 0.010 / $\pm$ 0.010 |
-| Random Forest | 7,742 | F1-Score / ROC-AUC | 0.936 / 0.980 | $\pm$ 0.006 / $\pm$ 0.004 |
-| XGBoost | 7,742 | F1-Score / ROC-AUC | 0.935 / 0.980 | $\pm$ 0.007 / $\pm$ 0.004 |
-| LightGBM | 7,742 | F1-Score / ROC-AUC | 0.936 / 0.981 | $\pm$ 0.007 / $\pm$ 0.004 |
-| CatBoost | 7,742 | F1-Score / ROC-AUC | 0.937 / 0.981 | $\pm$ 0.007 / $\pm$ 0.004 |
-| **Hist Gradient Boosting** | **7,742** | **F1-Score / ROC-AUC** | **0.937 / 0.981** | **$\pm$ 0.008 / $\pm$ 0.004** |
+| Gaussian Naive Bayes | 7,742 | F1-Score / ROC-AUC | 0.803 / 0.881 | $\pm$ 0.012 / $\pm$ 0.012 |
+| Árbol de Decisión | 7,742 | F1-Score / ROC-AUC | 0.888 / 0.887 | $\pm$ 0.011 / $\pm$ 0.012 |
+| Random Forest | 7,742 | F1-Score / ROC-AUC | 0.935 / 0.980 | $\pm$ 0.006 / $\pm$ 0.004 |
+| **XGBoost** | **7,742** | **F1-Score / ROC-AUC** | **0.943 / 0.983** | **$\pm$ 0.006 / $\pm$ 0.004** |
+| LightGBM | 7,742 | F1-Score / ROC-AUC | 0.938 / 0.982 | $\pm$ 0.007 / $\pm$ 0.005 |
+| **CatBoost** | **7,742** | **F1-Score / ROC-AUC** | **0.943 / 0.982** | **$\pm$ 0.007 / $\pm$ 0.004** |
+| Hist Gradient Boosting | 7,742 | F1-Score / ROC-AUC | 0.939 / 0.982 | $\pm$ 0.005 / $\pm$ 0.004 |
 
 ---
 
